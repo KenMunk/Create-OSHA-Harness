@@ -1,0 +1,55 @@
+# =========================
+# Gradle
+# =========================
+.gradle/
+build/
+
+# =========================
+# Local Gradle distributions
+# =========================
+gradle-dist/
+
+# =========================
+# Java / compiled output
+# =========================
+*.class
+out/
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+
+# =========================
+# Runtime environments
+# =========================
+run/
+
+# Test runtime instances (CRITICAL)
+test-client/
+test-server/
+
+# =========================
+# IDE files
+# =========================
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# VS Code
+.vscode/
+.notes/
+
+# =========================
+# OS-specific files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# JVM crash logs
+# =========================
+hs_err_pid*
+replay_pid*

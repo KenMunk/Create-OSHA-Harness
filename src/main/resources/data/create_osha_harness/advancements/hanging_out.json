@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "id": "simulated:rope_coupling"
+    },
+    "title": "Hanging Out",
+    "description": "Fall at least 10 blocks before your rope saves you",
+    "background": "minecraft:textures/gui/advancements/backgrounds/adventure.png",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "rope_saved": {
+      "trigger": "create_osha_harness:rope_saved_player",
+      "conditions": {
+        "min_fall_blocks": 10
+      }
+    }
+  }
+}

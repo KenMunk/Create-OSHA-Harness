@@ -1,0 +1,44 @@
+modLoader   = "javafml"
+loaderVersion = "[4,)"
+license     = "GPL-3.0"
+
+[[mods]]
+modId       = "create_osha_harness"
+version     = "${file.jarVersion}"
+displayName = "Create: OSHA Harness"
+description = '''
+Extends the rope items from Create Aeronautics with player harness behaviour:
+attach ropes to fence posts, other players, or yourself to constrain fall distance,
+climb with stamina, and simulate rope tension in multiplayer.
+'''
+
+[[dependencies.create_osha_harness]]
+    modId        = "neoforge"
+    type         = "required"
+    versionRange = "[21.1.233,)"
+    ordering     = "NONE"
+    side         = "BOTH"
+
+[[dependencies.create_osha_harness]]
+    modId        = "minecraft"
+    type         = "required"
+    versionRange = "[1.21.1,1.22)"
+    ordering     = "NONE"
+    side         = "BOTH"
+
+# Create is optional — harness physics work standalone, but rope item detection
+# uses the create_osha_harness:ropes item tag which you populate yourself.
+[[dependencies.create_osha_harness]]
+    modId        = "create"
+    type         = "optional"
+    versionRange = "[6.0.0,)"
+    ordering     = "AFTER"
+    side         = "BOTH"
+
+# Verify the exact modId string used by the installed Create Aeronautics build.
+[[dependencies.create_osha_harness]]
+    modId        = "create_aeronautics"
+    type         = "optional"
+    versionRange = "[1.0.0,)"
+    ordering     = "AFTER"
+    side         = "BOTH"

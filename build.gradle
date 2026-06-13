@@ -1,0 +1,78 @@
+plugins {
+    id 'net.neoforged.moddev' version '2.0.78'
+    id 'java-library'
+}
+
+group   = project.mod_group_id
+version = project.mod_version
+
+base {
+    archivesName = project.mod_id
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+    withSourcesJar()
+}
+
+neoForge {
+    version = project.neoforge_version
+
+    runs {
+        client {
+            client()
+            systemProperty 'forge.logging.markers',        'REGISTRIES'
+            systemProperty 'forge.logging.console.level',  'debug'
+            jvmArguments = ['-Xmx4G']
+        }
+        server {
+            server()
+            programArgument '--nogui'
+        }
+        data {
+            data()
+            programArguments.addAll '--mod',      project.mod_id,
+                                    '--all',
+                                    '--output',   file('src/generated/resources/').absolutePath,
+                                    '--existing', file('src/main/resources/').absolutePath
+        }
+    }
+
+    mods {
+        "${project.mod_id}" {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+repositories {
+    // Create mod official Maven
+    maven {
+        name = 'CreateMod'
+        url  = 'https://maven.createmod.net'
+    }
+    // CurseMaven for Create Aeronautics
+    maven {
+        name = 'CurseMaven'
+        url  = 'https://cursemaven.com'
+        content {
+            includeGroup 'curse.maven'
+        }
+    }
+    // Fallback: place Simulated/Aeronautics JARs in libs/ if not on Maven
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    // Create and Create Aeronautics are referenced only via item tags at runtime,
+    // so no compile-time dependency is required.
+    // Uncomment and adjust versions once you need to call their APIs directly.
+
+    // compileOnly "com.simibubi.create:create-1.21.1:${project.create_version}:slim"
+    // compileOnly "curse.maven:create-aeronautics-676721:${project.create_aeronautics_cf_id}"
+
+    // Or use local JARs placed in libs/:
+    // compileOnly fileTree(dir: 'libs', include: '*.jar')
+}
